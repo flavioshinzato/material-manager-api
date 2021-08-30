@@ -1,0 +1,2 @@
+class SportsMaterial < ApplicationRecord
+end
