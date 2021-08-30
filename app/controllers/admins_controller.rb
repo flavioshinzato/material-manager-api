@@ -1,17 +1,17 @@
 class AdminsController < ApplicationController
 
-  def sing_up
-    admin = Admin.create(user_params)
+  def create
+    admin = Admin.new(admin_params)
 
-    if admin.persisted?
-      headers = user.refresh_token
+    if admin.save
+      headers = admin.refresh_token
 
-      response.header['USER_TOKEN'] = headers[:token]
-      response.header['USER_EMAIL'] = headers[:email]
+      response.header['ADMIN_TOKEN'] = headers[:token]
+      response.header['ADMIN_EMAIL'] = headers[:email]
 
       respond_with admin, location: '', scope: headers, status: 201
     else
-      render_unprocessable_entity_error(user)
+      render json: admin.errors, status: :unprocessable_entity
     end
   end
 
@@ -21,9 +21,7 @@ class AdminsController < ApplicationController
   private
 
   def admin_params
-  end
-
-  def sign_in_params
+    params.permit(:email, :password)
   end
 
 end
