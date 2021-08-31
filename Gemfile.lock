@@ -135,6 +135,9 @@ GEM
     ffi (1.15.3)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    has_scope (0.8.0)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     listen (3.7.0)
@@ -270,6 +273,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_bot_rails
+  has_scope
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
   puma (~> 4.1)

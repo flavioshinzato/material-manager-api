@@ -2,8 +2,9 @@ class SportsMaterialsController < ApplicationController
   # before_action :authenticate_user_from_token!, only: [:create, :destroy, :edit]
   before_action :find_material, only: [:destroy, :edit]
 
+  has_scope :search
   def index
-    materials = SportsMaterial.all
+    materials = apply_scopes(SportsMaterial.all)
     render json: materials, status: :ok  
   end
 
