@@ -1,11 +1,15 @@
 class SportsMaterialsController < ApplicationController
-  # before_action :authenticate_user_from_token!, only: [:create, :destroy, :edit]
+  before_action :authenticate_user_from_token!, only: [:create, :destroy, :edit]
   before_action :find_material, only: [:destroy, :edit]
 
   has_scope :search
   def index
-    materials = apply_scopes(SportsMaterial.all)
-    render json: materials, status: :ok  
+    if params[:order] == "true"
+      materials = apply_scopes(SportsMaterial.all).order(title: :asc)
+    else
+      materials = apply_scopes(SportsMaterial.all).order(title: :desc)
+    end
+    render json: materials, status: :ok
   end
 
   def create
@@ -18,7 +22,7 @@ class SportsMaterialsController < ApplicationController
   end
 
   def update
-    if @material.update_attributes(material_params)
+    if @material.update(material_params)
       render json: @material, status: :ok
     else
       render json: @material.erros, status: :unprocessable_entity
