@@ -1,24 +1,32 @@
-# README
+### Dependências
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ - Ruby v2.7.0
+ - Rails v5.2.0
+ - MySQL >= 5.6 
 
-Things you may want to cover:
+**Instalação das dependências**
 
-* Ruby version
+A ferramenta `bundle` instalará todas as gems que foram definidas no Gemset do projeto.
+```bash
+$ gem install bundle
+$ bundle install
+```
 
-* System dependencies
+**Configuração do banco de dados**
 
-* Configuration
+Primeiramente é necessário criar o arquivo de setup de banco: `config/database.yml`.
 
-* Database creation
+Por fim, crie o banco de dados, rode as migrations e popule o mesmo.
 
-* Database initialization
+```bash
+$ rails db:create db:migrate db:seed
+```
 
-* How to run the test suite
+**Start do servidor**
+```bash
+$ rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Link para parte admin: http://localhiost:3000/admin
 
-* Deployment instructions
-
-* ...
+Link para o front-end da aplicação: https://github.com/flavioshinzato/material-manager-front/
